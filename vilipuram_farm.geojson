@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "vector_farm",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "vlufarm2", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 79.399721065139886, 12.416244528934691, 149.751433290302089 ], [ 79.399618903469388, 12.41585771142803, 147.960756022691612 ], [ 79.400172362483943, 12.415733188614221, 150.941269299039789 ], [ 79.400019657534628, 12.415364587379271, 151.304782185352195 ], [ 79.40044621077611, 12.41520709006555, 150.280198859769513 ], [ 79.400809885253636, 12.41586578056179, 149.402925549844099 ], [ 79.399721065139886, 12.416244528934691, 149.751433290302089 ] ] ] } }
+]
+}
