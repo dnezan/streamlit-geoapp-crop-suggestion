@@ -1,12 +1,44 @@
 import streamlit as st
 import folium
-import time
+from shapely.geometry import Point
 import geopandas as gpd
 import pandas as pd
 
-def dictionary():
+def check_state(file_name):
+
+    # Path to the GeoJSON file containing the farm plot boundary
+    farm_plot_file = file_name
+
+    # Path to the SHP file containing state boundaries and names
+    state_boundary_file = './data/cleaned_state_boundary.shp'
+
+    # Read the farm plot boundary from the GeoJSON file
+    farm_plot = gpd.read_file(farm_plot_file)
+
+    # Read the state boundaries and names from the SHP file
+    state_boundaries = gpd.read_file(state_boundary_file)
+    # Convert the farm plot geometry to the same CRS as the state boundaries
+    farm_plot = farm_plot.to_crs(state_boundaries.crs)
+
+    # Iterate over the state boundaries and check if the farm plot is within any state
+    for index, state in state_boundaries.iterrows():
+        if farm_plot.geometry.within(state.geometry).any():
+            state_name = state['STATE']
+            print("The farm plot is located within:", state_name)
+            return(state_name)
+            break
+
+
+    
+
+
+
+
+
+
+def dictionary(file_name):
     input_file = './data/data.csv'  # Replace with the path to your input CSV file
-    word_to_search = 'Tamil Nadu'  # Replace with the word you want to search
+    word_to_search = check_state(file_name)  # Replace with the word you want to search
 
     # Read the CSV file into a DataFrame
     df = pd.read_csv(input_file)
@@ -95,7 +127,7 @@ def main():
                 data=w.name, 
                 style_function=lambda feature: {'color': 'white'}
             ).add_to(folium_map)
-            dictionary()
+            dictionary(w.name)
         else: st.sidebar.error("No GeoJSON file selected")
 
 
