@@ -1,11 +1,25 @@
 import streamlit as st
+import pylottie as pyl
 import folium
 from shapely.geometry import Point
 import geopandas as gpd
 import pandas as pd
+import streamlit.components.v1 as components
+from streamlit_lottie import st_lottie
+import json
+
+@st.cache(allow_output_mutation=True)
+def load_animation_data():
+    with open("./data/loader.json", "r") as f:
+        animation_data = json.load(f)
+    return animation_data
+
+def display_loading_animation():
+    animation_data = load_animation_data()
+    st_lottie(animation_data, height=200, key="loading_animation")
+
 
 def check_state(file_name):
-
     # Path to the GeoJSON file containing the farm plot boundary
     farm_plot_file = file_name
 
@@ -83,6 +97,8 @@ def main():
     if "load_state" not in st.session_state:
         st.session_state.load_state = False
 
+    loading_animation = st.empty()
+
     # Create a Folium map with desired size
     tile_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
     url = "C:/Users/Dinesh.Sreekanthan/PycharmProjects/gis_map/geospatial-data-using-python/data/vector_farm.geojson"
@@ -109,7 +125,10 @@ def main():
     
     if add_geojson_button:
         st.session_state.load_state = True
+        
         if (w):
+            display_loading_animation()
+            loading_animation.markdown("Loading...")
             df = gpd.read_file(w.name)
             #Find the center point
             df['Center_point'] = df['geometry'].centroid
@@ -122,6 +141,8 @@ def main():
             #st.write(uploaded_lat_val)
             #st.write(uploaded_long_val)
 
+            loading_animation.empty()
+            
             folium_map = folium.Map(location=[uploaded_long_val, uploaded_lat_val], zoom_start=30, width=1000, height=500, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
             folium.GeoJson(
                 data=w.name, 
