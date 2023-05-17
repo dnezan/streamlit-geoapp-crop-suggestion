@@ -8,17 +8,6 @@ import streamlit.components.v1 as components
 from streamlit_lottie import st_lottie
 import json
 
-@st.cache(allow_output_mutation=True)
-def load_animation_data():
-    with open("./data/loader.json", "r") as f:
-        animation_data = json.load(f)
-    return animation_data
-
-def display_loading_animation():
-    animation_data = load_animation_data()
-    st_lottie(animation_data, height=200, key="loading_animation")
-
-
 def check_state(file_name):
     # Path to the GeoJSON file containing the farm plot boundary
     farm_plot_file = file_name
@@ -42,14 +31,6 @@ def check_state(file_name):
             return(state_name)
             break
 
-
-    
-
-
-
-
-
-
 def dictionary(file_name):
     input_file = './data/data.csv'  # Replace with the path to your input CSV file
     word_to_search = check_state(file_name)  # Replace with the word you want to search
@@ -64,21 +45,13 @@ def dictionary(file_name):
     kinds = filtered_df['Kind']
     rec = kinds.unique()[0:5]
     df = pd.DataFrame(rec)
-    #df = df.drop(df.columns[0], axis=1)
 
-
-    # Display the resulting DataFrame
-    #st.sidebar.dataframe(df, use_container_width=True)
     st.sidebar.subheader("Recommended crop :ear_of_rice:")
     for index, row in df.iterrows():
         #st.sidebar.write(f"Row {index + 1}")
         st.sidebar.write(f"{row[0]}")
 
-    #st.sidebar.write()
-
-
 def main():
-
 
     st.set_page_config(layout="wide")  # Set the app layout to wide
     st.title(":seedling: Crop Recommendation App")
@@ -97,7 +70,7 @@ def main():
     if "load_state" not in st.session_state:
         st.session_state.load_state = False
 
-    loading_animation = st.empty()
+    loading_animation_placeholder = st.empty()
 
     # Create a Folium map with desired size
     tile_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
@@ -127,9 +100,8 @@ def main():
         st.session_state.load_state = True
         
         if (w):
-            display_loading_animation()
-            loading_animation.markdown("Loading...")
             df = gpd.read_file(w.name)
+
             #Find the center point
             df['Center_point'] = df['geometry'].centroid
             #Extract lat and lon from the centerpoint
@@ -141,8 +113,6 @@ def main():
             #st.write(uploaded_lat_val)
             #st.write(uploaded_long_val)
 
-            loading_animation.empty()
-            
             folium_map = folium.Map(location=[uploaded_long_val, uploaded_lat_val], zoom_start=30, width=1000, height=500, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
             folium.GeoJson(
                 data=w.name, 
