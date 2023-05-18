@@ -102,7 +102,7 @@ def main():
     tile_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
     url = "C:/Users/Dinesh.Sreekanthan/PycharmProjects/gis_map/geospatial-data-using-python/data/vector_farm.geojson"
     
-    folium_map = folium.Map(location=[12.9826273, 80.2652262], zoom_start=14, width=1000, height=300, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
+    folium_map = folium.Map(location=[12.9826273, 80.2652262], zoom_start=14, width=1000, height=350, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
     
     # Define the different tile layers
     tile_layers = {
@@ -111,11 +111,7 @@ def main():
     }
     
     col1, col2, col3, col4 = st.columns(4)
-    col1.empty()
-
-    #col2.metric("Temperature", "70 °F", "1.2 °F")
-    #col3.metric("Wind", "9 mph", "-8%")
-    #col4.metric("Humidity", "86%", "4%")
+    #col1.empty()
 
     # Get the radio button selection from the user
     tile_selection = st.sidebar.radio("Map Tiles", list(tile_layers.keys()))
@@ -146,7 +142,7 @@ def main():
             #st.write(uploaded_lat_val)
             #st.write(uploaded_long_val)
 
-            folium_map = folium.Map(location=[uploaded_long_val, uploaded_lat_val], zoom_start=17, width=1000, height=300, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
+            folium_map = folium.Map(location=[uploaded_long_val, uploaded_lat_val], zoom_start=17, width=1000, height=350, tiles=tile_url, attr='Tiles &copy; Esri', control_scale=True)
             folium.GeoJson(
                 data=w.name, 
                 style_function=lambda feature: {'color': 'white'}
@@ -162,7 +158,7 @@ def main():
     modified_html = folium_map_html.replace('<div class="folium-map"', '<div class="folium-map" style="width: 100%;"')
 
     # Display the modified map HTML using st.components.v1.html
-    st.components.v1.html(modified_html, width=1000, height=300, scrolling=False)
+    st.components.v1.html(modified_html, width=1000, height=350, scrolling=False)
 
 if __name__ == "__main__":
     main()
