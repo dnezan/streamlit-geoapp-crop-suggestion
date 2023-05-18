@@ -6,7 +6,9 @@ import geopandas as gpd
 import pandas as pd
 import streamlit.components.v1 as components
 from streamlit_lottie import st_lottie
-import json
+from pyowm import OWM
+from pyowm.utils import config
+from pyowm.utils import timestamps
 
 def check_state(file_name):
     # Path to the GeoJSON file containing the farm plot boundary
@@ -31,7 +33,7 @@ def check_state(file_name):
             return(state_name)
             break
 
-def dictionary(file_name, col1, col2, col3, col4):
+def dictionary(file_name, col1, col2, col3, col4, uploaded_long_val, uploaded_lat_val):
     input_file = './data/data.csv'  # Replace with the path to your input CSV file
     word_to_search = check_state(file_name)  # Replace with the word you want to search
 
@@ -45,15 +47,28 @@ def dictionary(file_name, col1, col2, col3, col4):
     kinds = filtered_df['Kind']
     rec = kinds.unique()[0:1]
     df = pd.DataFrame(rec)
+    print(uploaded_long_val)
+    print(uploaded_lat_val)
+    owm = OWM('4c87f00e27fc340e470f2d34fd1e516f')
+    mgr = owm.weather_manager()
 
+    observation = mgr.weather_at_coords(float(uploaded_long_val), float(uploaded_lat_val))
+    w = observation.weather
 
-    col1.metric("Temperature", "70 °F", "1.2 °F")
-    col2.metric("Wind", "9 mph", "-8%")
-    col3.metric("Humidity", "86%", "4%")
+    loc_temp = round(w.temperature('celsius')['temp'],2)
+    loc_temp = str(loc_temp)
+    loc_wind = round(w.wind('km_hour')['speed'],2)
+    loc_wind = str(loc_wind)
+    loc_humid = round(w.humidity,2)
+    loc_humid = str(loc_humid)
+   
+    col1.metric(":mostly_sunny: Temperature", loc_temp + " °C", "1.2 °C")
+    col2.metric(":tornado: Wind", loc_wind + " km/hr", "-8%")
+    col3.metric(":droplet: Humidity", loc_humid + " %", "4%")
 
-    col4.caption(":green[:ear_of_rice: Recommended crop]")
+    col4.caption(":green[**:ear_of_rice: Recommended crop**]")
     for index, row in df.iterrows():
-        col4.write(f"{row[0]}") 
+        col4.write(f"**{row[0]}**") 
 
 
     expander = col4.expander("Variety/Hybrid Name")
@@ -136,7 +151,7 @@ def main():
                 data=w.name, 
                 style_function=lambda feature: {'color': 'white'}
             ).add_to(folium_map)
-            dictionary(w.name, col1, col2, col3, col4)
+            dictionary(w.name, col1, col2, col3, col4, uploaded_long_val, uploaded_lat_val)
         else: st.sidebar.error("No GeoJSON file selected")
 
 
@@ -148,9 +163,6 @@ def main():
 
     # Display the modified map HTML using st.components.v1.html
     st.components.v1.html(modified_html, width=1000, height=300, scrolling=False)
-
-
-
 
 if __name__ == "__main__":
     main()
