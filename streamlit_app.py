@@ -55,6 +55,10 @@ def dictionary(file_name, col1, col2, col3, col4):
     for index, row in df.iterrows():
         col4.write(f"{row[0]}") 
 
+
+    expander = col4.expander("Variety/Hybrid Name")
+    expander.write("""Swarna Shusk Dhan (RCPR 56-IR93827-29-1-1-4) (IET 27962)""")
+
 def main():
 
     st.set_page_config(layout="wide")  # Set the app layout to wide
