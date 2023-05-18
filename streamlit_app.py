@@ -27,11 +27,11 @@ def check_state(file_name):
     for index, state in state_boundaries.iterrows():
         if farm_plot.geometry.within(state.geometry).any():
             state_name = state['STATE']
-            print("The farm plot is located within:", state_name)
+            st.sidebar.success("The farm plot has been loaded.")
             return(state_name)
             break
 
-def dictionary(file_name, col1):
+def dictionary(file_name, col1, col2, col3, col4):
     input_file = './data/data.csv'  # Replace with the path to your input CSV file
     word_to_search = check_state(file_name)  # Replace with the word you want to search
 
@@ -43,19 +43,23 @@ def dictionary(file_name, col1):
     #st.write(filtered_df)
     # Extract the "Kind" column from the filtered DataFrame
     kinds = filtered_df['Kind']
-    rec = kinds.unique()[0:5]
+    rec = kinds.unique()[0:1]
     df = pd.DataFrame(rec)
 
-    col1.subheader("Recommended crop :ear_of_rice:")
+
+    col1.metric("Temperature", "70 °F", "1.2 °F")
+    col2.metric("Wind", "9 mph", "-8%")
+    col3.metric("Humidity", "86%", "4%")
+
+    col4.caption(":green[:ear_of_rice: Recommended crop]")
     for index, row in df.iterrows():
-        #st.sidebar.write(f"Row {index + 1}")
-        #st.sidebar.write(f"{row[0]}")
-        col1.write(f"{row[0]}") 
+        col4.write(f"{row[0]}") 
 
 def main():
 
     st.set_page_config(layout="wide")  # Set the app layout to wide
-    st.title(":seedling: Crop Recommendation App")
+    st.title(":seedling: What crop should you plant?")
+    #st.caption("Crop recommendation app by Dinesh")
     css = '''
     <style>
     #MainMenu {visibility: hidden; }
@@ -89,9 +93,7 @@ def main():
     
     col1, col2, col3, col4 = st.columns(4)
     col1.empty()
-    col2.empty()
-    col3.empty()
-    col4.empty()
+
     #col2.metric("Temperature", "70 °F", "1.2 °F")
     #col3.metric("Wind", "9 mph", "-8%")
     #col4.metric("Humidity", "86%", "4%")
@@ -130,7 +132,7 @@ def main():
                 data=w.name, 
                 style_function=lambda feature: {'color': 'white'}
             ).add_to(folium_map)
-            dictionary(w.name, col1)
+            dictionary(w.name, col1, col2, col3, col4)
         else: st.sidebar.error("No GeoJSON file selected")
 
 
@@ -143,9 +145,7 @@ def main():
     # Display the modified map HTML using st.components.v1.html
     st.components.v1.html(modified_html, width=1000, height=300, scrolling=False)
 
-    col2.metric("Temperature", "70 °F", "1.2 °F")
-    col3.metric("Wind", "9 mph", "-8%")
-    col4.metric("Humidity", "86%", "4%")
+
 
 
 if __name__ == "__main__":
