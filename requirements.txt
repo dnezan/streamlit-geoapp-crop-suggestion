@@ -2,8 +2,5 @@ streamlit
 folium
 geopandas
 pandas
-pylottie
-shapely.geometry
-streamlit.components.v1
-streamlit_lottie
+shapely
 pyowm

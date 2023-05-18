@@ -1,11 +1,9 @@
 import streamlit as st
-import pylottie as pyl
 import folium
 from shapely.geometry import Point
 import geopandas as gpd
 import pandas as pd
 import streamlit.components.v1 as components
-from streamlit_lottie import st_lottie
 from pyowm import OWM
 from pyowm.utils import config
 from pyowm.utils import timestamps
@@ -111,7 +109,7 @@ def main():
     }
     
     col1, col2, col3, col4 = st.columns(4)
-    #col1.empty()
+    col1.empty()
 
     # Get the radio button selection from the user
     tile_selection = st.sidebar.radio("Map Tiles", list(tile_layers.keys()))
