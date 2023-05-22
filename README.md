@@ -2,7 +2,7 @@
 <br />
 <div align="center">
 
-  <h3 align="center">Crop Recommendation System using GIS</h3>
+  <h2 align="center">Crop Recommendation System using GIS</h2>
 
   <p align="center">
     A Streamlit app written in Python using Folium/GeoPandas to help farmers decide what crop to plant based on government recommendations. 
@@ -30,7 +30,6 @@ Make sure to clone the repo to run the project locally or deploy it on Streamlit
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
 * Using pip
   ```sh
   pip install streamlit folium shapely geopandas pandas pyowm
@@ -57,62 +56,20 @@ _Below is an example of how you can instruct your audience on installing and set
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+To use this app, you will need vector data of your farm plot. In order to test this app, there are a number of ways to obtain test data. You can either 
+* Trace your farm on Google Earth, export to KML, and then convert to GeoJSON using GQIS.
+or
+* Trace your farm on [GeoJSON.io](https://geojson.io/) and download the .geojson file.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Upload this file using the app. The app will calculate the centroid of the plot, recenter the Folium map view, and display the farm boundary. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+![map1](https://raw.githubusercontent.com/dnezan/streamit-geoapp-crop-suggestion/master/data/screen1.png?)
+_A plot of farmland in Nagpur, India._
 
-<!-- CONTRIBUTING -->
-## Contributing
+![map2](https://raw.githubusercontent.com/dnezan/streamit-geoapp-crop-suggestion/master/data/screen2.png?)
+_A plot of farmland in Rajasthan, India._ 
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+By using latitude and longitude information, the app will check with the OpenWeatherMap API and display local weather conditions. The app will also find what state the plot of land is present in using GeoPandas and a reference state boundaries SHP file, and suggest a crop to grow based on SeedNet's most recent documentation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
