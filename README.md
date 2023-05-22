@@ -70,7 +70,15 @@ _A plot of farmland in Nagpur, India._
 ![map2](https://github.com/dnezan/streamlit-geoapp-crop-suggestion/blob/main/data/screen2.png?raw=true)
 _A plot of farmland in Rajasthan, India._ 
 
-By using latitude and longitude information, the app will check with the OpenWeatherMap API and display local weather conditions. The app will also find what state the plot of land is present in using GeoPandas and a reference state boundaries SHP file, and suggest a crop to grow based on SeedNet's most recent documentation.
+By using latitude and longitude information, the app will check with the OpenWeatherMap API and display local weather conditions. The app will also find what state the plot of land is present in using GeoPandas and a reference state boundaries SHP file, and suggest a crop to grow based on SeedNet's most recent documentation. This document is published in a .pdf format, so we use OCR techniques to extract the useful information in .csv format.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+![data1](https://github.com/dnezan/streamlit-geoapp-crop-suggestion/blob/main/data/screen3.png?raw=true)
+_A screenshot of the original PDF data published by SeedNet._
+
+Using the state name, the app returns the first crop that appears when looking for crops that can be grown in that particular state.
+
+![app2](https://github.com/dnezan/streamlit-geoapp-crop-suggestion/blob/main/data/screen4.png?raw=true)
+
+
+
 
