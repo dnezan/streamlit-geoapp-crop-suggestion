@@ -44,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The aim is to create a simple app to suggest a crop for a farmer to grow based on the state they live in, and also display relevant weather information. I have also showcased various GIS techniques using an open source software called QGIS as well as preprocessing and deploying a Streamlit Python app on the cloud. This app is built using various open source libraries including Pandas/GeoPandas, Folium, shapely, and Streamlit, and sources data from the Seednet initiative by the Indian government as well as open weather data using PyOWM to access the OpenWeatherMap API.
+The aim is to create a simple app to suggest a crop for a farmer to grow based on the state they live in, and also display relevant weather information. I have also showcased various GIS techniques using an open source software called QGIS as well as preprocessing and deploying a Streamlit Python app on the cloud. This app is built using various open source libraries including Pandas/GeoPandas, Folium, shapely, and Streamlit, and sources data from the [Seednet initiative](https://seednet.gov.in/) by the Indian government as well as open weather data using PyOWM to access the [OpenWeatherMap API](https://openweathermap.org/api).
 
 Here's how it works:
 * The user uploads a GeoTIFF file containing vector information about their farm plot.
@@ -53,37 +53,17 @@ Here's how it works:
 
 This app is intended as proof of concept and can thus be easily extended by using various additional metrics such as satellite imagery containing NDVI data, etc.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Make sure to clone the repo to run the project locally or deploy it on Streamlit Cloud/Heroku.
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+* Using pip
+  ```
+pip install streamlit folium shapely geopandas pandas pyowm
   ```
 
 ### Installation
@@ -104,10 +84,6 @@ _Below is an example of how you can instruct your audience on installing and set
    const API_KEY = 'ENTER YOUR API';
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -116,25 +92,6 @@ Use this space to show useful examples of how a project can be used. Additional 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTRIBUTING -->
 ## Contributing
