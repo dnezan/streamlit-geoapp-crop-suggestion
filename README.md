@@ -8,7 +8,7 @@
     A Streamlit app written in Python using Folium/GeoPandas to help farmers decide what crop to plant based on government recommendations. 
   </p>
     <a href="https://github.com/dnezan/streamlit-geoapp-crop-suggestion">
-    <img src="./data/home.png" alt="Logo" width="1847" height="932">
+    <img src="./data/home2.png" alt="Logo">
   </a>
 
 </div>
