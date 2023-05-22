@@ -9,7 +9,8 @@
   </p>
     <a href="https://github.com/dnezan/streamlit-geoapp-crop-suggestion">
     <img src="./data/home2.png" alt="Logo">
-
+</div>
+</br>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
