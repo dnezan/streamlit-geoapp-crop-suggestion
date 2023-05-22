@@ -1,14 +1,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Crop Recommendation System using GIS</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A Streamlit app written in Python using Folium/GeoPandas to help farmers decide what crop to plant based on government recommendations. 
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
