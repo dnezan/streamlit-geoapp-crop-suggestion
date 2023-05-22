@@ -62,8 +62,8 @@ Make sure to clone the repo to run the project locally or deploy it on Streamlit
 
 This is an example of how to list things you need to use the software and how to install them.
 * Using pip
-  ```
-pip install streamlit folium shapely geopandas pandas pyowm
+  ```sh
+  pip install streamlit folium shapely geopandas pandas pyowm
   ```
 
 ### Installation
