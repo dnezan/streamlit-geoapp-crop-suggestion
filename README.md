@@ -15,7 +15,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The aim is to create a simple app to suggest a crop for a farmer to grow based on the state they live in, and also display relevant weather information. I have also showcased various GIS techniques using an open source software called QGIS as well as preprocessing and deploying a Streamlit Python app on the cloud. This app is built using various open source libraries including Pandas/GeoPandas, Folium, shapely, and Streamlit, and sources data from the [Seednet initiative](https://seednet.gov.in/) by the Indian government as well as open weather data using PyOWM to access the [OpenWeatherMap API](https://openweathermap.org/api).
+The aim is to create a simple app to suggest a crop for a farmer to grow based on the state they live in, and also display relevant weather information. I have also showcased various GIS techniques using an open source software called QGIS as well as preprocessing and deploying a Streamlit app on the cloud using Python. This app is built using various open source libraries including Pandas/GeoPandas, Folium, shapely, and Streamlit, and sources data from the [Seednet initiative](https://seednet.gov.in/) by the Indian government as well as open weather data using PyOWM to access the [OpenWeatherMap API](https://openweathermap.org/api).
 
 Here's how it works:
 * The user uploads a GeoTIFF file containing vector information about their farm plot.
@@ -64,10 +64,10 @@ or
 
 Upload this file using the app. The app will calculate the centroid of the plot, recenter the Folium map view, and display the farm boundary. 
 
-![map1](https://raw.githubusercontent.com/dnezan/streamit-geoapp-crop-suggestion/master/data/screen1.png?)
+![map1](https://github.com/dnezan/streamlit-geoapp-crop-suggestion/blob/main/data/screen1.png?raw=true)
 _A plot of farmland in Nagpur, India._
 
-![map2](https://raw.githubusercontent.com/dnezan/streamit-geoapp-crop-suggestion/master/data/screen2.png?)
+![map2](https://github.com/dnezan/streamlit-geoapp-crop-suggestion/blob/main/data/screen2.png?raw=true)
 _A plot of farmland in Rajasthan, India._ 
 
 By using latitude and longitude information, the app will check with the OpenWeatherMap API and display local weather conditions. The app will also find what state the plot of land is present in using GeoPandas and a reference state boundaries SHP file, and suggest a crop to grow based on SeedNet's most recent documentation.
